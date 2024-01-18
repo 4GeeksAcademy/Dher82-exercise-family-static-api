@@ -82,9 +82,19 @@ def add_member():
         else:
             return jsonify({"solicitud falló"}), 400
     except:
-        return jsonify({"el servidor encuentró un error"}), 500
+        return jsonify({"el servidor encontró un error"}), 500
     
-    
+@app.route('/member/<int:id>', methods=['DELETE'])
+def delete_member(id):
+
+    # this is how you can use the Family datastructure by calling its methods
+    members = jackson_family.delete_member(id)
+    print (delete_member)
+    if(delete_member =="no encontrado"):
+       return jsonify({"msg":"no se ha podido eliminar, usuario no encontrado "}), 400
+    else:
+        members=jackson_family.get_all_members()
+    return jsonify({"done":True , "memberrest":members}), 200    
 
 
 # this only runs if `$ python src/app.py` is executed

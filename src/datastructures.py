@@ -30,11 +30,27 @@ class FamilyStructure:
 
     def delete_member(self, id):
         # fill this method and update the return
-        pass
+        delete_member = list(filter(lambda person:person["id"]==id, self._members))
+        
+        if len(delete_member)==0:
+            return "no encontrado"
+        else:
+             self._members.remove(delete_member[0])
+             return self._members
 
     def get_member(self, id):
         # fill this method and update the return
-        pass
+        member = list(filter(lambda person:person["id"]==id, self._members))
+        if len(member)==0:
+            return "sin datos"
+        else:
+            getmember={
+                "first_name": member[0]["first_name"],
+                "age": member[0]["age"],
+                "lucky_numbers": member[0]["lucky_numbers"],
+                "id":id
+            }
+            return getmember
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
