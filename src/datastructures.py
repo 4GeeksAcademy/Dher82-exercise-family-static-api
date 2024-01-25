@@ -1,4 +1,3 @@
-
 """
 update this file to implement the following already declared methods:
 - add_member: Should add a member to the self._members list
@@ -21,37 +20,39 @@ class FamilyStructure:
 
     def add_member(self, member):
         # fill this method and update the return
-        if member["id"] == None:
-            member["id"] = self._generateId()
-        member["last_name"] = self.last_name()
-
-        return self._members.append(member)
-    
+        if member['id'] == None:
+            member['id'] = self._generateId()
+       
+        member['last_name'] = self.last_name
+        return  self._members.append(member)
 
     def delete_member(self, id):
         # fill this method and update the return
-        delete_member = list(filter(lambda person:person["id"]==id, self._members))
-        
-        if len(delete_member)==0:
-            return "no encontrado"
-        else:
-             self._members.remove(delete_member[0])
-             return self._members
+        new_family_list = []
+        for obj in self._members:
+            if obj['id'] != id:
+                new_family_list.append(obj)
+                self._members = new_family_list
 
     def get_member(self, id):
         # fill this method and update the return
-        member = list(filter(lambda person:person["id"]==id, self._members))
-        if len(member)==0:
-            return "sin datos"
-        else:
-            getmember={
-                "first_name": member[0]["first_name"],
-                "age": member[0]["age"],
-                "lucky_numbers": member[0]["lucky_numbers"],
-                "id":id
-            }
-            return getmember
+        for obj in self._members:
+            if obj['id'] == id:
+                return obj
+
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
         return self._members
+
+
+
+
+
+
+
+
+
+
+
+
